@@ -37,7 +37,7 @@ public class ProductController {
     @ApiOperation("分页获取所有商品")
     public CommResult<CommonPage> listAllProduct(){
 
-        logger.info("==请求进来了=={}","111111111");
+        logger.info("分页获取所有商品");
 
         List<Product> list=productService.listAllProduct();
 
