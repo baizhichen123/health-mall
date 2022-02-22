@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.Mapper.ProductMapper">
+
+
+
+
+<select id="listallProduct" resultType="com.health.Model.Product" >
+
+    SELECT * FROM product
+
+</select>
+    
+    
+    <insert id="insertProduct" useGeneratedKeys="true" keyProperty="id" parameterType="com.health.Model.Product">
+
+        INSERT INTO product('name', 'price', 'text', 'level') VALUES (#{name}, #{price}, '智能级别', '2');
+
+    </insert>
+
+
+
+
+</mapper>
