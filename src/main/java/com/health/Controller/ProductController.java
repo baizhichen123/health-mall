@@ -32,7 +32,7 @@ public class ProductController {
 
     @RequestMapping("/listProduct")
     @ResponseBody
-    @ApiOperation("分页获取所有商品") 
+    @ApiOperation("分页获取所有商品")
     public CommResult<CommonPage> listAllProduct(){
 
         logger.info("分页获取所有商品");
