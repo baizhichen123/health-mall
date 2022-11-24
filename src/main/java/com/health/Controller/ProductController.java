@@ -36,17 +36,14 @@ public class ProductController {
     public CommResult<CommonPage> listAllProduct(){
 
         logger.info("分页获取所有商品");
-
-
-        Object productList = redisService.get("productList");
-
-        if(Objects.isNull(productList)){
-            List<Product> list=productService.listAllProduct();
-            redisService.set("productList",list);
+       // Object productList = redisService.get("productList");
+        //if(Objects.isNull(productList)){
+           List<Product> list=productService.listAllProduct();
+          //  redisService.set("productList",list);
             return CommResult.success(CommonPage.restPage((List)list));
-        }else {
-            return CommResult.success(CommonPage.restPage((List)productList));
-        }
+       // }else {
+         //   return CommResult.success(CommonPage.restPage((List)productList));
+        //}
 
     }
 

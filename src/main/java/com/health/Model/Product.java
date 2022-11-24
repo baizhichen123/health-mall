@@ -16,8 +16,8 @@ import java.math.BigDecimal;
 @TableName("product")
 public class Product implements Serializable {
 
-    @TableId(value = "id",type = IdType.AUTO)
-    private int id;
+    @TableId(value = "pid",type = IdType.AUTO)
+    private int pid;
 
     @TableField(value = "name")
     private String name;

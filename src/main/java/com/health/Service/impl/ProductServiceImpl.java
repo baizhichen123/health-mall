@@ -42,14 +42,16 @@ public class ProductServiceImpl implements ProductService {
         logger.info("888888");
 
 
-           Product product = Product.builder().name("红米手机").price(new BigDecimal(60)).level("1").text("手机").build();
+           Product product = Product.builder().
+                   name("红米手机").
+                   price(new BigDecimal(60)).level("1").text("手机").build();
 
         for (int i=0;i<50;i++) {
             product.setName(product.getName()+i);
             int insertCount=productMapper.insert(product);
 
         }
-        return product.getId();
+        return product.getPid();
 
     }
 }
