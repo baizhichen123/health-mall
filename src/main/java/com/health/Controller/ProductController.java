@@ -20,7 +20,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/product")
 @Api(tags = "ProductController",description = "商品管理控制层")
-public class ProductController {
+public class ProductController {  
 
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
 
