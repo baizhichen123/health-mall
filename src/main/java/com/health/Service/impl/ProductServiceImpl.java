@@ -27,9 +27,11 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> listAllProduct() {
+    public List<Product> listAllProduct(Integer pageNum, Integer numEachPage) {
 
-        PageHelper.startPage(1,5);
+
+
+        PageHelper.startPage(pageNum,numEachPage);
 
         List<Product> productList= productMapper.selectList(null);
 

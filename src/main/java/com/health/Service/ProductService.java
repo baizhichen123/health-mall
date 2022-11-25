@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> listAllProduct();
-
     int insertProduct();
+
+    List<Product> listAllProduct(Integer pageNum, Integer numEachPage);
 }
