@@ -27,13 +27,11 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> listAllProduct(Integer pageNum, Integer numEachPage) {
-
-
+    public List<Product> listAllProduct(Integer pageNum, Integer numEachPage, String searchValue, String columnSort, String sortType) {
 
         PageHelper.startPage(pageNum,numEachPage);
 
-        List<Product> productList= productMapper.selectList(null);
+        List<Product> productList= productMapper.findAllProductList(searchValue,columnSort,sortType);
 
         return productList;
     }
@@ -56,4 +54,6 @@ public class ProductServiceImpl implements ProductService {
         return product.getPid();
 
     }
+
+
 }

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +40,16 @@ public class ProductController {
     @ApiOperation("分页获取所有商品")
     public CommResult<CommonPage> listAllProduct(
             @RequestParam(required = false, value = "page_num", defaultValue = "1") Integer pageNum, // 当前页数
-            @RequestParam(required = false, value = "num_each_page", defaultValue = "4") Integer numEachPage//每页条数
+            @RequestParam(required = false, value = "num_each_page", defaultValue = "5") Integer numEachPage,//每页条数
+            @RequestParam(required = false, value = "search_value", defaultValue = "") String searchValue,//模糊查询
+            @RequestParam(required = false, value = "column_sort", defaultValue = "") String columnSort,//排序字段
+            @RequestParam(required = false, value = "sort_type", defaultValue = "") String sortType//排序字段
     ){
 
         logger.info("分页获取所有商品");
        // Object productList = redisService.get("productList");
        // if(Objects.isNull(productList)){
-           List<Product> list=productService.listAllProduct(pageNum,numEachPage);
+           List<Product> list=productService.listAllProduct(pageNum,numEachPage,searchValue,columnSort,sortType);
          //   redisService.set("productList",list);
             return CommResult.success(CommonPage.restPage((List)list));
        //}else {
@@ -58,7 +62,7 @@ public class ProductController {
      * 图片上传方法
      * @param file 文件
      */
-    @RequestMapping(value = "/addproduct")
+    @RequestMapping(value = "/addproduct",method = RequestMethod.POST)
     public void upload_suppImg(
             @RequestParam(value = "file", required = true) MultipartFile[] file,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -69,6 +73,7 @@ public class ProductController {
 
             if (file != null) {
                 for (MultipartFile multipartFile : file) {
+
                     // 文件名称
                     String filename = multipartFile.getOriginalFilename()
                             .substring(multipartFile.getOriginalFilename().lastIndexOf("."));

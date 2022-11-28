@@ -10,6 +10,21 @@
     SELECT * FROM product
 
 </select>
+
+    <!-- 模糊查询 以及字段排序-->
+    <select id="findAllProductList" resultType="com.health.Model.Product" parameterType="java.util.Map">
+
+    SELECT A.pid,A.name,A.price,A.text,A.level FROM product  A where 1=1
+
+        <if test="searchValue != null and searchValue != ''">
+            and A.name like concat ('%',#{searchValue},'%')
+        </if>
+
+        <if test="columnSort !=null and columnSort !=''  and sortType !=null and sortType !='' ">
+            order by #{columnSort}   #{sortType}
+        </if>
+
+    </select>
     
     
     <insert id="insertProduct" useGeneratedKeys="true" keyProperty="id" parameterType="com.health.Model.Product">
